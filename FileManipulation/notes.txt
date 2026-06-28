@@ -21,3 +21,5 @@ Breaking it down:
 - Path(r"some\path\to\file.txt")
 - in the for loop, use .glob(**/*) to find all files in the current directory and subdirectories.
 - a shorter way to do the same thing is: .rglob("*")
+- to count categories, we need to use a dictionary.
+- Dictionary is a collection of key-value pairs.
