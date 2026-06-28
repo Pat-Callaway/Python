@@ -35,15 +35,16 @@ SECTION 3: CLEANING TEXT
   Use rglob to search through every subfolder too.
 
   SECTION 7: AUTOMATION MINDSET
-  Automation means writing a recipe once and reusing it.
+                                    Automation means writing a recipe once and reusing it.
   Start small, run it often, and read your errors carefully
   Every error message is a clue, not a failure.
   Practice beats memorizing. Build something and run it.
 
   apples
-  bananas
+                                            bananas
   cherries
   dates
   elderberries
 
-  THE END - now go build something with this file.
+  THE END - now go
+    build something with this file.
