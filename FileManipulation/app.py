@@ -7,13 +7,13 @@ from pathlib import Path
 # Add an empty list to store the lines
 lines = []
 
-folder = Path(r"*") # "." means the current directory
-for file in folder.rglob("**/*"):
-    print(file)
-    lines.append(file) # adds the items into the list called lines
-    print(file.name)
-    print(file.suffix)
-    print(file.is_file())
+folder = Path(r"D:\personal\downloads") # "." means the current directory
+for file in folder.glob("**/*"):
+    if file.is_file():
+        print(file.name, "is a file")
+    else:
+        print(file.name, "is a folder")
+
 
 
 
