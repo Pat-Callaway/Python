@@ -17,3 +17,7 @@ Breaking it down:
 - git mv app.py notes.txt app FileManipulation/ cleanly moves the file to the new location.
 - to find files by extension, use the built-in tool pathlib - needs to be imported.
 - once imported let's start using .glob() to find all files with the extension .txt.
+- That little r before the quote means "raw string — treat backslashes as plain characters, no secret codes." Both work; forward slashes are often easiest.
+- Path(r"some\path\to\file.txt")
+- in the for loop, use .glob(**/*) to find all files in the current directory and subdirectories.
+- a shorter way to do the same thing is: .rglob("*")

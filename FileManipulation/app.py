@@ -7,16 +7,16 @@ from pathlib import Path
 # Add an empty list to store the lines
 lines = []
 
-folder = Path(".") # "." means the current directory
-for file in folder.glob("*"):
+folder = Path(r"*") # "." means the current directory
+for file in folder.rglob("**/*"):
     print(file)
+    lines.append(file) # adds the items into the list called lines
+    print(file.name)
+    print(file.suffix)
+    print(file.is_file())
 
-with open("notes.txt") as f:
-    for line in f:
-        clean = line.strip().lower()
-        # The line below adds the line to the list, now you can actually work with the data.
-        lines.append(clean)
-print(lines)
+
+
 
 
 
