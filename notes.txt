@@ -1,0 +1,18 @@
+This is a test file. This contains filler information.
+
+Apples
+Bananas
+
+1. chocolate
+2. strawberry
+3, pineapple
+
+Breaking it down:
+- open("notes.txt") tells Python to open the file notes.txt
+- as f: tells Python to open the file notes.txt as f
+- f.read() tells Python to read the contents of the file notes.txt
+- in python, indents are used to make code more readable and accurate
+- f read() gave us the contents of the file notes.txt as one big string (including the newlines)
+- Python didn't "understand" the lines as separate things - just handed them as separate things.
+    - fine for displaying a file.
+- add a for loop to iterate through the lines in the file.
