@@ -14,3 +14,6 @@ Breaking it down:
     - fine for displaying a file.
 - add a for loop to iterate through the lines in the file.
 - a list is needed to actually store the lines.
+- git mv app.py notes.txt app FileManipulation/ cleanly moves the file to the new location.
+- to find files by extension, use the built-in tool pathlib - needs to be imported.
+- once imported let's start using .glob() to find all files with the extension .txt.
