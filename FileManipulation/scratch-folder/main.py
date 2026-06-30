@@ -1,7 +1,8 @@
-from itertools import count
+import sys
 from pathlib import Path
 import os # Importing the os module to create a folder
 import logging
+import shutil
 
 # CREATES THE ACTUAL LOGGER
 logger = logging.getLogger('logging_tool')
@@ -16,17 +17,36 @@ formatter = logging.Formatter('%(asctime)s = %(name)s-%(levelname)s-%(message)s'
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-# Create an empty dictionary to hold key : value pairs
-files = {}
-
 # Folder path for testing
-folder = Path(".")
+print("Which directory would you like to work in?")
+user_input = input(">>")
+logger.info("Obtaining user input")
+clean_input = user_input.strip("\\")
+clean_path = Path(clean_input).expanduser().resolve()
+logger.info("sanitizing user input for directory")
+logger.info(f"checking if {clean_path} is valid..")
+
+if clean_path.is_dir():
+    logger.info("Valid directory found, changing directory")
+    os.chdir(clean_path)
+    print("You are now in " + os.getcwd())
+else:
+    logger.warning("Invalid path")
+    print("Please enter a valid path...")
+
+
+
+
+
+
+
+
+"""""
 for items in folder.glob("**/*"):
-    logger.info("Scanning items")
     if items.is_file():
         ext = items.suffix # This grabs the file's extension and assigns it to the variable ext
         files[ext] = files.get(ext, 0) + 1 # Gets the number of files with the same extension the .get() method returns the value if the key exists, otherwise it returns None
-
+"""
 
 
 
