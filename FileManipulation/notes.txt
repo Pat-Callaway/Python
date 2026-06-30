@@ -23,3 +23,12 @@ Breaking it down:
 - a shorter way to do the same thing is: .rglob("*")
 - to count categories, we need to use a dictionary.
 - Dictionary is a collection of key-value pairs.
+- [] is a list
+- {} is a dictionary
+-print(f"some text") is an f string, used to format text.
+
+## Pycharm settings
+
+- ctrl + alt + s opens up settings
+    - code completion -> disable inline code completion to stop "auto logic"
+    - pop-up -> keep show suggestions while you type (basic code completion)

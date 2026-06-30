@@ -5,7 +5,7 @@ from pathlib import Path
 # Testing Pycharm and Python
 # Run on command line - python app.py
 # Add an empty list to store the lines
-file_extensions = {}
+file_extensions = {} # this is a dictionary
 
 
 folder = Path(r"D:\personal\downloads") # "." means the current directory
