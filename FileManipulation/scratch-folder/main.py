@@ -2,7 +2,6 @@ import sys
 from pathlib import Path
 import os # Importing the os module to create a folder
 import logging
-import shutil
 from os.path import isfile, join
 
 # CREATES THE ACTUAL LOGGER
@@ -18,10 +17,25 @@ formatter = logging.Formatter('%(asctime)s = %(name)s-%(levelname)s-%(message)s'
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-def show_menu(): # User-defined function to
+def action_list():
+    print("Which actions would you like to perform in the current directory?\n")
+    print("1. Rename folder\n2. Rename file\n3. Move folder\n4. Move file\n.5 Copy folder\n6. Copy file\n7. Delete folder\n8. Delete file")
+
+    choice = input(">> ")
+    logger.info(f"User chose option {choice}")
+
+
+
+
+def show_menu(): # User-defined function to reprompt user when navigating to different directory
     while True:
+        print("What would you like to do?")
+        print("1. List directories?\n2. List files?\n3. Navigate to a specific folder/file?\n4. Press 'q' to quit...")
+        print("Please chose 1, 2, or 3...")
+
         logger.info("Awaiting user input")
         choice = input(">> ")
+
         if choice == "1":
             logger.info(f"User chose {choice}")
             print(os.listdir())
@@ -42,10 +56,14 @@ def show_menu(): # User-defined function to
                 os.chdir(clean_new_directory)
                 logger.info("Successfully changed directories")
                 print(f"You are now in {clean_new_directory}")
+                # TODO: Add modules for safe functions and distructive functions
             elif clean_new_directory.is_file():
                 with clean_new_directory.open("r") as file:
                     content = file.read()
                     print(content)
+            else:
+                logger.warning("Path does not exist")
+                print("Please enter a valid path.")
                 logger.info(f"Opening {clean_new_directory}...")
         elif choice == "q":
             logger.info("User quit program, closing application")
@@ -77,13 +95,8 @@ def main ():
             print("Please enter a valid path...")
 
     print()
-    print("What would you like to do?")
-    print("1. List directories?\n2. List files?\n3. Navigate to a specific folder/file?\n4. Press 'q' to quit...")
-    print("Please chose 1, 2, or 3...")
 
     show_menu()
-
-
 
 if __name__ == "__main__":
     main()
