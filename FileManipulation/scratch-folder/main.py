@@ -3,6 +3,7 @@ from pathlib import Path
 import os # Importing the os module to create a folder
 import logging
 import shutil
+from os.path import isfile, join
 
 # CREATES THE ACTUAL LOGGER
 logger = logging.getLogger('logging_tool')
@@ -39,6 +40,35 @@ while True: # while True is ALWAYS True
     else:
         logger.warning("Invalid path")
         print("Please enter a valid path...")
+
+print()
+print("What would you like to do?")
+print("1. List directories?\n2. List files?\n3. Navigate to a specific folder/file?\n")
+print("Please chose 1, 2, or 3...")
+
+while True:
+    user_input = input(">>")
+    logger.info("Awaiting user input")
+
+    if user_input == "1":
+        print(os.listdir())
+        logger.info("Successfully printed directories/folders...")
+        break
+    elif user_input == "2":
+        logger.info("Attempting to list all files in current directory")
+        only_files = [f for f in os.listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
+        print(only_files)
+        break
+
+
+
+
+
+
+
+
+
+
 
 
 
