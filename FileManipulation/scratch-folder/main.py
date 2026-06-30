@@ -24,12 +24,13 @@ print("Which directory would you like to work in?")
 logger.info("Obtaining user input")
 
 
-logger.info("sanitizing user input for directory")
+
 
 
 while True: # while True is ALWAYS True
     user_input = input(">>")
     clean_path = Path(user_input).expanduser().resolve()
+    logger.info("sanitizing user input for directory")
     logger.info(f"checking if {clean_path} is valid..")
 
     if clean_path.is_dir():
@@ -47,18 +48,39 @@ print("1. List directories?\n2. List files?\n3. Navigate to a specific folder/fi
 print("Please chose 1, 2, or 3...")
 
 while True:
-    user_input = input(">>")
     logger.info("Awaiting user input")
-
+    user_input = input(">>")
     if user_input == "1":
+        logger.info(f"User chose {user_input}")
         print(os.listdir())
         logger.info("Successfully printed directories/folders...")
         break
     elif user_input == "2":
+        logger.info(f"User chose {user_input}")
         logger.info("Attempting to list all files in current directory")
         only_files = [f for f in os.listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
         print(only_files)
+        logger.info("Successfully printed all files in current directory.")
         break
+    elif user_input == "3":
+        logger.info(f"User chose {user_input}")
+        print("Please type which folder/file you would like to open")
+        new_directory = input(">> ")
+        logger.info(f"Attempting to sanitize {new_directory} ")
+        clean_new_directory = Path(new_directory).expanduser().resolve() # Always make sure to sanitize user input
+        if clean_new_directory.is_dir():
+            os.chdir(clean_new_directory)
+            logger.info("Successfully changed directories")
+            print(f"You are now in {clean_new_directory}")
+            break
+        elif clean_new_directory.is_file():
+            open(clean_new_directory) # os.O_RDWR is the read and write FLAG for os.open()
+            logger.info(f"Opening {clean_new_directory}...")
+            break
+        else:
+            logger.error(f"User chose invalid option of {user_input}")
+            logger.info("Prompting user again...")
+
 
 
 
