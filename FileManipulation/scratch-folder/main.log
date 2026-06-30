@@ -32,3 +32,13 @@
 2026-06-29 21:26:42,769 = logging_tool-INFO-sanitizing user input for directory
 2026-06-29 21:26:42,769 = logging_tool-INFO-checking if C:\Users is valid..
 2026-06-29 21:26:42,769 = logging_tool-INFO-Valid directory found, changing directory
+2026-06-29 21:42:15,703 = logging_tool-INFO-Obtaining user input
+2026-06-29 21:42:15,703 = logging_tool-INFO-sanitizing user input for directory
+2026-06-29 21:42:22,567 = logging_tool-INFO-checking if C:\Users is valid..
+2026-06-29 21:42:22,567 = logging_tool-INFO-Valid directory found, changing directory
+2026-06-29 21:42:27,843 = logging_tool-INFO-Obtaining user input
+2026-06-29 21:42:27,843 = logging_tool-INFO-sanitizing user input for directory
+2026-06-29 21:42:34,449 = logging_tool-INFO-checking if V:\4 is valid..
+2026-06-29 21:42:34,449 = logging_tool-WARNING-Invalid path
+2026-06-29 21:42:39,291 = logging_tool-INFO-checking if F:\ is valid..
+2026-06-29 21:42:39,292 = logging_tool-INFO-Valid directory found, changing directory

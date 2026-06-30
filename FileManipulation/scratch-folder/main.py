@@ -19,20 +19,26 @@ logger.addHandler(fh)
 
 # Folder path for testing
 print("Which directory would you like to work in?")
-user_input = input(">>")
-logger.info("Obtaining user input")
-clean_input = user_input.strip("\\")
-clean_path = Path(clean_input).expanduser().resolve()
-logger.info("sanitizing user input for directory")
-logger.info(f"checking if {clean_path} is valid..")
 
-if clean_path.is_dir():
-    logger.info("Valid directory found, changing directory")
-    os.chdir(clean_path)
-    print("You are now in " + os.getcwd())
-else:
-    logger.warning("Invalid path")
-    print("Please enter a valid path...")
+logger.info("Obtaining user input")
+
+
+logger.info("sanitizing user input for directory")
+
+
+while True: # while True is ALWAYS True
+    user_input = input(">>")
+    clean_path = Path(user_input).expanduser().resolve()
+    logger.info(f"checking if {clean_path} is valid..")
+
+    if clean_path.is_dir():
+        logger.info("Valid directory found, changing directory")
+        os.chdir(clean_path)
+        print("You are now in " + os.getcwd())
+        break
+    else:
+        logger.warning("Invalid path")
+        print("Please enter a valid path...")
 
 
 
