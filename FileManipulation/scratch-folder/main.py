@@ -39,21 +39,30 @@ def action_list():
 
 
             if clean_choice.is_dir():
-                new_name = clean_choice.rename(input("What would you like to rename the folder?\n>> "))
-                logger.info(f"Attempting to change folder name..")
-                new_folder = sanitize_filename(new_name)
+                new_input = input("What would you like to rename the folder?\n>> ")
                 logger.info("Attempting to remove Illegal characters...")
-                print(f"Folder successfully renamed to {new_folder}\n")
+                new_name = sanitize_filename(new_input)
+                logger.info(f"Attempting to change folder name..")
+                new_folder_name = clean_choice.rename(clean_choice.with_name(new_name))
+                print(f"Folder successfully renamed to {new_folder_name}\n")
                 logger.info(f"Folder was successfully renamed!")
                 print(f"You are currently in {os.getcwd()}\n")
-            if clean_choice.is_file():
-                new_name = clean_choice.rename(input("What would you like to rename the file?\n>> "))
-                logger.info("Attempting to change folder name...")
-                new_file = sanitize_filename(new_name)
-                logger.info("Attempting to remove illegal characters...")
-                print(f"File successfully renamed to {new_file}\n")
-                logger.info("File was successfully renamed!")
-                print(f"You are currently in {os.getcwd()}\n")
+            elif clean_choice.is_file():
+               new_input = input("What would you like to rename the file?\n>> ")
+               logger.info("Attempting to remove Illegal characters")
+               new_name = sanitize_filename(new_input)
+               logger.info("Attempting to change file name...")
+               new_file_name = clean_choice.rename(clean_choice.with_name(new_name))
+               print(f"File successfully renamed to {new_file_name}\n")
+               logger.info("File was successfully renamed!")
+               print(f"You are currently in {os.getcwd()}\n")
+            else:
+                logger.warning("Valid path not provided...")
+                print("No such folder or file found...")
+
+
+
+
 
 
 

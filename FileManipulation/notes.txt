@@ -36,3 +36,7 @@ Breaking it down:
     - use this for a defined method
 - pip install pathvalidate
     - used this with santize_filename() to strip illegal characters.
+- pip freeze > requirements.txt
+- repr() a useful tool for representing an object as a string for testing purposes
+    - in scratch-pad/main.py - used in the python terminal to see what would happen if a user entered illegal characters for a file or folder name
+    - it returned an empty string ('')
