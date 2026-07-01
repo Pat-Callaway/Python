@@ -23,7 +23,7 @@ logger.addHandler(fh)
 
 def action_list():
     print("Which actions would you like to perform in the current directory?\n")
-    print("1. Rename folder/file\n2. Move folder/file\n3. Copy folder/file\n4. Delete folder/file")
+    print("1. Rename folder/file\n2. Move folder/file\n3. Copy folder/file\n4. Delete folder/file\n5. Navigate to a different directory\n")
 
     choice = input(">> ")
 
@@ -37,14 +37,23 @@ def action_list():
             clean_choice = Path(choice).expanduser().resolve()
             logger.info("sanitized user input...")
 
+
             if clean_choice.is_dir():
-                new_name = clean_choice.rename(input("What would you like to rename the folder?\n>>"))
+                new_name = clean_choice.rename(input("What would you like to rename the folder?\n>> "))
                 logger.info(f"Attempting to change folder name..")
                 new_folder = sanitize_filename(new_name)
                 logger.info("Attempting to remove Illegal characters...")
-                print(f"Folder successfully renamed to {new_folder}")
-                
-
+                print(f"Folder successfully renamed to {new_folder}\n")
+                logger.info(f"Folder was successfully renamed!")
+                print(f"You are currently in {os.getcwd()}\n")
+            if clean_choice.is_file():
+                new_name = clean_choice.rename(input("What would you like to rename the file?\n>> "))
+                logger.info("Attempting to change folder name...")
+                new_file = sanitize_filename(new_name)
+                logger.info("Attempting to remove illegal characters...")
+                print(f"File successfully renamed to {new_file}\n")
+                logger.info("File was successfully renamed!")
+                print(f"You are currently in {os.getcwd()}\n")
 
 
 
@@ -63,7 +72,7 @@ def show_menu(): # User-defined function to reprompt user when navigating to dif
     while True:
         print("What would you like to do?")
         print("1. List directories?\n2. List files?\n3. Navigate to a specific folder/file?\n4. Press 'q' to quit...")
-        print("Please chose 1, 2, or 3...")
+        print("Please chose 1, 2, or 3...\n")
 
         logger.info("Awaiting user input")
         choice = input(">> ")
@@ -79,6 +88,7 @@ def show_menu(): # User-defined function to reprompt user when navigating to dif
             only_files = [f for f in os.listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
             print(only_files)
             logger.info("Successfully printed all files in current directory.")
+            action_list()
         elif choice == "3":
             logger.info(f"User chose {choice}")
             print("Please type which folder/file you would like to open")
