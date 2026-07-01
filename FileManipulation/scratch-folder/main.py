@@ -3,6 +3,8 @@ from pathlib import Path
 import os # Importing the os module to create a folder
 import logging
 from os.path import isfile, join
+from pathvalidate import sanitize_filename # pathvalidate installed via pip
+import shutil
 
 # CREATES THE ACTUAL LOGGER
 logger = logging.getLogger('logging_tool')
@@ -17,12 +19,42 @@ formatter = logging.Formatter('%(asctime)s = %(name)s-%(levelname)s-%(message)s'
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
+
+
 def action_list():
     print("Which actions would you like to perform in the current directory?\n")
-    print("1. Rename folder\n2. Rename file\n3. Move folder\n4. Move file\n.5 Copy folder\n6. Copy file\n7. Delete folder\n8. Delete file")
+    print("1. Rename folder/file\n2. Move folder/file\n3. Copy folder/file\n4. Delete folder/file")
 
     choice = input(">> ")
-    logger.info(f"User chose option {choice}")
+
+
+    match choice:
+
+        case "1":
+            logger.info(f"User selected {choice}")
+            print("Which file or folder would you like to rename?")
+            choice = input(">> ")
+            clean_choice = Path(choice).expanduser().resolve()
+            logger.info("sanitized user input...")
+
+            if clean_choice.is_dir():
+                new_name = clean_choice.rename(input("What would you like to rename the folder?\n>>"))
+                logger.info(f"Attempting to change folder name..")
+                new_folder = sanitize_filename(new_name)
+                logger.info("Attempting to remove Illegal characters...")
+                print(f"Folder successfully renamed to {new_folder}")
+                
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -40,6 +72,7 @@ def show_menu(): # User-defined function to reprompt user when navigating to dif
             logger.info(f"User chose {choice}")
             print(os.listdir())
             logger.info("Successfully printed directories/folders...")
+            action_list()
         elif choice == "2":
             logger.info(f"User chose {choice}")
             logger.info("Attempting to list all files in current directory")
@@ -56,7 +89,8 @@ def show_menu(): # User-defined function to reprompt user when navigating to dif
                 os.chdir(clean_new_directory)
                 logger.info("Successfully changed directories")
                 print(f"You are now in {clean_new_directory}")
-                # TODO: Add modules for safe functions and distructive functions
+                # TODO: Add modules for safe functions and destructive functions
+                action_list()
             elif clean_new_directory.is_file():
                 with clean_new_directory.open("r") as file:
                     content = file.read()
@@ -73,7 +107,7 @@ def show_menu(): # User-defined function to reprompt user when navigating to dif
             logger.error(f"User chose invalid option of {choice}")
             logger.info("Prompting user again...")
 
-# Folder path for testing
+
 def main ():
     print("Which directory would you like to work in?")
 

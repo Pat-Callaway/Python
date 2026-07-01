@@ -32,3 +32,7 @@ Breaking it down:
 - ctrl + alt + s opens up settings
     - code completion -> disable inline code completion to stop "auto logic"
     - pop-up -> keep show suggestions while you type (basic code completion)
+-re.sub() - regular expression to prevent illegal characters (re.somemethod)
+    - use this for a defined method
+- pip install pathvalidate
+    - used this with santize_filename() to strip illegal characters.
