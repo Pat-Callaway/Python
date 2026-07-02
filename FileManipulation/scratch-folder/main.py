@@ -59,6 +59,36 @@ def action_list():
             else:
                 logger.warning("Valid path not provided...")
                 print("No such folder or file found...")
+        case "2":
+            logger.info(f"User selected {choice}")
+            print("Which file or folder would you like to move?")
+            choice = input(">> ")
+            clean_choice = Path(choice).expanduser().resolve()
+            logger.info("sanitized user input...")
+
+            # TODO: Add logic using shutil
+
+
+
+        case "3":
+         logger.info(f"User selected {choice}")
+         print("Which file or folder would you like to copy??")
+         choice = input(">> ")
+         clean_choice = Path(choice).expanduser().resolve()
+         logger.info("sanitized user input...")
+
+        # TODO: Add logic.. shutil? or OS?
+
+
+        case "4":
+         logger.info(f"User selected {choice}")
+         print("Which file or folder would you like to delete??")
+         choice = input(">> ")
+         clean_choice = Path(choice).expanduser().resolve()
+         logger.info("sanitized user input...")
+
+         # TODO: Add confirmation prompt for user and add logging to confirm actual deletion of file and or folder
+
 
 
 
