@@ -61,10 +61,23 @@ def action_list():
                 print("No such folder or file found...")
         case "2":
             logger.info(f"User selected {choice}")
-            print("Which file or folder would you like to move?")
+            print(f"Currently in {os.getcwd()}\n")
+            print("Which file or folder would you like to move?\n")
             choice = input(">> ")
             clean_choice = Path(choice).expanduser().resolve()
             logger.info("sanitized user input...")
+            user_path = input("Where would you like to to move this folder to?\n>> ")
+            target_path = sanitize_filename(user_path)
+            if Path(target_path).is_dir():
+                shutil.move(target_path,clean_choice)
+                logger.info("Item successfully moved!")
+                print(f"File has been moved successfully to {target_path}!\n")
+            else:
+                logger.error("Directory does not exist...")
+                print("Please enter a valid directory\n")
+
+
+
 
             # TODO: Add logic using shutil
 
@@ -159,7 +172,7 @@ def show_menu(): # User-defined function to reprompt user when navigating to dif
 
 
 def main ():
-    print("Which directory would you like to work in?")
+    print("Which directory would you like to work in?\n")
 
     logger.info("Obtaining user input")
 
