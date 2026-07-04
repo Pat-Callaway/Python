@@ -70,6 +70,43 @@ def show_menu():  # User-defined function to reprompt user when navigating to di
         logger.info("Awaiting user input")
         choice = input(">> ")
 
+        if choice == "1":
+            logger.info(f"User chose {choice}")
+            print(os.listdir())
+            logger.info("Successfully printed directories/folders...")
+        elif choice == "2":
+            logger.info(f"User chose {choice}")
+            logger.info("Attempting to list all files in current directory")
+            only_files = [f for f in os.listdir(os.getcwd()) if isfile(join(os.getcwd(), f))]
+            print(only_files)
+            logger.info("Successfully printed all files in current directory.")
+        elif choice == "3":
+            logger.info(f"User chose {choice}")
+            print("Please type which folder/file you would like to open")
+            new_directory = input(">> ")
+            logger.info(f"Attempting to sanitize {new_directory} ")
+            clean_new_directory = Path(new_directory).expanduser().resolve()  # Always make sure to sanitize user input
+            if clean_new_directory.is_dir():
+                os.chdir(clean_new_directory)
+                logger.info("Successfully changed directories")
+                print(f"You are now in {clean_new_directory}\n")
+            elif clean_new_directory.is_file():
+                with clean_new_directory.open("r") as file:
+                    content = file.read()
+                    print(content)
+            else:
+                logger.warning("Path does not exist")
+                print("Please enter a valid path.")
+                logger.info(f"Opening {clean_new_directory}...")
+        elif choice == "q":
+            logger.info("User quit program, closing application")
+            print("Closing application. Goodbye!")
+            sys.exit()
+        else:
+            print("Please enter a valid option")
+            logger.error(f"User chose invalid option of {choice}")
+            logger.info("Prompting user again...")
+
 
 
 
