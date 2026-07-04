@@ -19,7 +19,7 @@ formatter = logging.Formatter('%(asctime)s = %(name)s-%(levelname)s-%(message)s'
 fh.setFormatter(formatter)
 logger.addHandler(fh)
 
-'''''
+
 def action_list():
     print("Which actions would you like to perform in the current directory?\n")
     print(
@@ -57,7 +57,24 @@ def action_list():
             else:
                 logger.warning("Valid path not provided...")
                 print("No such folder or file found...")
-'''''
+        case "2":
+            logger.info(f"User selected choice {choice}")
+            new_input = input("Which file or folder would you like to move? >\n")
+            new_path = input("Which directory would you like to move the file or folder to? >>\n" )
+            new_name = sanitize_filename(Path(new_input))
+            new_path_dst = sanitize_filename(Path(new_path))
+
+            if new_path_dst.is_dir():
+                shutil.move(new_name, new_path_dst)
+                print("Item has been successfully moved!")
+                print(os.listdir(new_path_dst))
+            else:
+                logger.error("Invalid Path, item not moved")
+                print("No such directory exists, please check your path")
+
+
+
+
 
 
 
@@ -74,6 +91,7 @@ def show_menu():  # User-defined function to reprompt user when navigating to di
             logger.info(f"User chose {choice}")
             print(os.listdir())
             logger.info("Successfully printed directories/folders...")
+            action_list()
         elif choice == "2":
             logger.info(f"User chose {choice}")
             logger.info("Attempting to list all files in current directory")
