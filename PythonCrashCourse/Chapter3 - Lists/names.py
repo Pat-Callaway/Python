@@ -44,3 +44,22 @@ print(empty_list)
 popped_list = empty_list.pop()
 print(empty_list)
 print(popped_list)
+
+# using pop() at any index
+new_list = ['bags', 'carts', 'basket']
+new_popped_list = new_list.pop(0)
+print(new_list)
+print(new_popped_list)
+
+# Using remove()
+
+guests = ['jill', 'bob', 'alice', 'steve', 'mario', 'jeff', 'colin']
+ # guests.remove('bob')
+print(guests)
+
+# Storing removed value with remove()
+
+uninvited_guest = 'bob'
+guests.remove(uninvited_guest)
+print(guests)
+print(uninvited_guest)
