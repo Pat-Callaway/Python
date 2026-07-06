@@ -21,3 +21,7 @@ I will be working chapter by chapter taking notes on what I feel is important an
   - Constants should be: THIS_CONSTANT (all upper-case)
   - You can use _ to separate large numbers so they are easier to read, Python interperts them all the same
   - import this - The Zen of Python
+- Lists and working with Lists (Chapters 3 + 4)
+  - List functions and loops
+  - For loops
+- 
